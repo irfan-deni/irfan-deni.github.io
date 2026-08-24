@@ -2,42 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 
 const contacts = [
-	{
-		title: 'GitHub',
-		detail: 'github.com/C4bbage64',
-		link: 'https://github.com/C4bbage64',
-	},
-	{
-		title: 'Email',
-		detail: 'm.irfandeni@gmail.com',
-		link: 'mailto:m.irfandeni@gmail.com',
-	},
-	
-	{
-		title: 'LinkedIn',
-		detail: 'https://www.linkedin.com/in/muhammad-irfan-deni-b18688260/',
-		link: 'https://www.linkedin.com/in/muhammad-irfan-deni-b18688260/',
-	},
+	{ title: 'GitHub', detail: 'github.com/irfan-deni', link: 'https://github.com/irfan-deni', note: 'Code, works in progress, and open-source activity.' },
+	{ title: 'Email', detail: 'm.irfandeni@gmail.com', link: 'mailto:m.irfandeni@gmail.com', note: 'The best place for collaboration or a longer conversation.' },
+	{ title: 'LinkedIn', detail: 'muhammad-irfan-deni', link: 'https://www.linkedin.com/in/muhammad-irfan-deni-b18688260/', note: 'Professional updates and a quick introduction.' },
 ];
 ---
 
-<Layout title="Contact | C4bbage64" description="Get in touch for collaboration or questions">
-	<section class="mx-auto max-w-4xl px-6 py-14 lg:py-20">
-		<div class="space-y-3">
-			<p class="text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Contact</p>
-			<h1 class="text-3xl font-semibold leading-tight sm:text-4xl">Let's talk</h1>
-			<p class="max-w-2xl text-slate-600 dark:text-slate-300">
-				Pick the channel that works best for you. The email address and links below are placeholders—swap
-				in the real ones before launch.
-			</p>
+<Layout title="Contact | Irfan Deni" description="Get in touch for collaboration or questions">
+	<section class="mx-auto max-w-6xl px-5 py-14 sm:px-6 lg:py-20">
+		<div class="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(17rem,.85fr)]">
+			<div><p class="eyebrow">Open line / 03</p><h1 class="mt-5 text-5xl leading-none sm:text-6xl">Let's make something useful.</h1><p class="mt-8 max-w-xl text-lg leading-8 text-[var(--muted)]">Pick the channel that works best for you. I am always interested in thoughtful technical conversations and opportunities to learn.</p></div>
+			<aside class="border-t-2 border-[var(--ink)] pt-4"><p class="eyebrow">Availability</p><p class="mt-5 font-display text-3xl leading-tight">Open to conversations, collaborations, and shared learning.</p></aside>
 		</div>
-
-		<div class="mt-10 grid gap-4 sm:grid-cols-2">
-			{contacts.map((contact) => (
-				<a class="card block p-5 transition hover:-translate-y-1 hover:shadow-xl" href={contact.link} target={contact.link?.startsWith('http') ? '_blank' : undefined} rel={contact.link?.startsWith('http') ? 'noreferrer' : undefined}>
-					<p class="text-sm uppercase tracking-[0.15em] text-slate-500 dark:text-slate-400">{contact.title}</p>
-					<p class="mt-2 text-lg font-semibold">{contact.detail}</p>
-					<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Add a short note about what you prefer to discuss or when you're available.</p>
+		<div class="mt-20 divide-y border-y rule">
+			{contacts.map((contact, index) => (
+				<a class="group grid gap-4 py-7 transition hover:bg-[color:var(--ink)]/[.035] sm:grid-cols-[4rem_minmax(0,1fr)_auto] sm:items-center sm:px-3" href={contact.link} target={contact.link.startsWith('http') ? '_blank' : undefined} rel={contact.link.startsWith('http') ? 'noreferrer' : undefined}>
+					<span class="font-mono text-xs text-[var(--accent)]">0{index + 1}</span>
+					<div><h2 class="text-2xl group-hover:text-[var(--accent)]">{contact.title}</h2><p class="mt-1 text-sm text-[var(--muted)]">{contact.note}</p></div>
+					<span class="font-mono text-xs text-[var(--muted)] group-hover:text-[var(--accent)]">{contact.detail} ↗</span>
 				</a>
 			))}
 		</div>

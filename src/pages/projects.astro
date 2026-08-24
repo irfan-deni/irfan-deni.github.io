@@ -2,62 +2,32 @@
 import Layout from '../layouts/Layout.astro';
 
 const projects = [
-	{
-		title: 'BotDesk',
-		description: 'BotDesk is a platform that helps users manage their tasks efficiently through automation.',
-		tech: ['Python', 'PyQt', 'Tailwind'],
-		links: {repo: '#' },
-	},
-	{
-		title: 'ShelfSpace',
-		description: 'Highlight the problem, your solution, and any notable performance wins.',
-		tech: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Electron'],
-		links: {repo: '#' },
-	},
-	{
-		title: 'SpendWise',
-		description: 'Add a placeholder for visuals like screenshots or a short Loom video.',
-		tech: ['React', 'Design Systems', 'Testing'],
-		links: {repo: '#' },
-	},
+	{ title: 'InapGo', description: 'BotDesk is a platform that helps users manage their tasks efficiently through automation.', tech: ['Python', 'PyQt', 'Tailwind'], links: { repo: '#' } },
+	{ title: 'Intra Buddy', description: 'Highlight the problem, your solution, and any notable performance wins.', tech: ['TypeScript', 'React', 'Vite', 'Tailwind CSS', 'Electron'], links: { repo: '#' } },
 ];
 ---
 
-<Layout title="Projects | C4bbage64" description="Selected work and experiments by C4bbage64">
-	<section class="mx-auto max-w-6xl px-6 py-14 lg:py-20">
-		<div class="flex items-center justify-between gap-4">
+<Layout title="Projects | Irfan Deni" description="Selected work and experiments by Irfan Deni">
+	<section class="mx-auto max-w-6xl px-5 py-14 sm:px-6 lg:py-20">
+		<div class="grid gap-8 border-b-2 border-[var(--ink)] pb-10 md:grid-cols-[1fr_auto] md:items-end">
 			<div>
-				<p class="text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Work</p>
-				<h1 class="text-3xl font-semibold leading-tight sm:text-4xl">Projects</h1>
-				<p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-300">
-					Swap these cards with your own projects. Include what you shipped, your role, the tech stack,
-					and a link to the code or demo.
-				</p>
+				<p class="eyebrow">Selected work</p>
+				<h1 class="mt-4 text-5xl leading-none sm:text-6xl">Projects & experiments</h1>
+				<p class="mt-5 max-w-2xl text-base leading-7 text-[var(--muted)]">A working index of things built to make everyday systems more useful, understandable, and dependable.</p>
 			</div>
-			<a class="btn-secondary" href="https://github.com/C4bbage64" target="_blank" rel="noreferrer">
-				View GitHub
-			</a>
+			<a class="btn-secondary" href="https://github.com/irfan-deni" target="_blank" rel="noreferrer">All on GitHub ↗</a>
 		</div>
 
-		<div class="mt-10 grid gap-6 md:grid-cols-2">
-			{projects.map((project) => (
-				<article class="card flex h-full flex-col gap-4 p-5">
-					<div class="flex items-start justify-between gap-3">
-						<div>
-							<h2 class="text-xl font-semibold">{project.title}</h2>
-							<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{project.description}</p>
-						</div>
-						<span class="pill text-xs">Placeholder</span>
+		<div class="divide-y rule">
+			{projects.map((project, index) => (
+				<article class="group grid gap-5 py-8 md:grid-cols-[4rem_minmax(0,1fr)_auto] md:gap-8 md:py-10">
+					<p class="font-mono text-xs text-[var(--accent)]">0{index + 1}</p>
+					<div>
+						<h2 class="text-3xl transition group-hover:text-[var(--accent)] sm:text-4xl">{project.title}</h2>
+						<p class="mt-3 max-w-xl leading-7 text-[var(--muted)]">{project.description}</p>
+						<div class="mt-5 flex flex-wrap gap-2">{project.tech.map((tech) => <span class="pill">{tech}</span>)}</div>
 					</div>
-					<div class="flex flex-wrap gap-2">
-						{project.tech.map((tech) => (
-							<span class="pill" aria-label={`Uses ${tech}`}>{tech}</span>
-						))}
-					</div>
-					<div class="mt-auto flex flex-wrap gap-3 pt-2">
-						<a class="btn-secondary" href={project.links.demo} target="_blank" rel="noreferrer">Demo</a>
-						<a class="btn-ghost" href={project.links.repo} target="_blank" rel="noreferrer">GitHub</a>
-					</div>
+					<a class="btn-ghost self-start md:mt-1" href={project.links.repo} target="_blank" rel="noreferrer">Repository ↗</a>
 				</article>
 			))}
 		</div>

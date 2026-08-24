@@ -2,6 +2,7 @@
 title: "What I learned shipping side projects"
 description: "Scope, automation, and feedback loops that actually stick."
 date: "2025-11-10"
+category: "Learnings"
 tags:
   - Projects
   - Process

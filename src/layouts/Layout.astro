@@ -2,7 +2,7 @@
 import '../styles/global.css';
 
 const {
-	title = 'C4bbage64 | Portfolio',
+	title = 'Irfan Deni | Portfolio',
 	description = 'Developer / Programmer / Tech Enthusiast',
 } = Astro.props;
 
@@ -11,7 +11,7 @@ const navLinks = [
 	{ href: '/about', label: 'About' },
 	{ href: '/projects', label: 'Projects' },
 	{ href: '/blog', label: 'Blog' },
-	{ href: '/art', label: 'Art' },
+	{ href: '/now', label: 'Now' },
 	{ href: '/contact', label: 'Contact' },
 ];
 ---
@@ -19,7 +19,7 @@ const navLinks = [
 <!doctype html>
 <html
 	lang="en"
-	class="scroll-smooth bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100"
+	class="scroll-smooth"
 >
 	<head>
 		<meta charset="UTF-8" />
@@ -43,40 +43,36 @@ const navLinks = [
 			})();
 		</script>
 	</head>
-	<body class="min-h-screen flex flex-col">
-		<header
-			class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/80"
-		>
-			<div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-				<a class="flex items-center gap-2 font-semibold" href="/">
-					<span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-soft">
-						C
-					</span>
-					<span class="text-lg tracking-tight">C4bbage64</span>
+	<body class="min-h-screen flex flex-col text-[var(--ink)]">
+		<header class="sticky top-0 z-30 border-b rule bg-[color:var(--paper)]/95 backdrop-blur">
+			<div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6">
+				<a class="flex items-center gap-3" href="/" aria-label="irfan-deni home">
+					<span class="brand-mark flex h-8 w-8 items-center justify-center bg-[var(--accent)] font-mono text-xs font-medium">ID</span>
+					<span class="font-mono text-sm font-medium tracking-tight">irfan-deni</span>
 				</a>
-				<nav class="flex items-center gap-4 text-sm font-medium text-slate-700 dark:text-slate-200 md:gap-6">
+				<nav class="hidden items-center gap-5 font-mono text-xs text-[var(--muted)] md:flex">
 					{navLinks.map((link) => (
 						<a
 							href={link.href}
-							class="relative transition hover:text-slate-900 dark:hover:text-white"
+							class:list={['transition hover:text-[var(--accent)]', Astro.url.pathname === link.href && 'text-[var(--ink)]']}
 						>
 							{link.label}
 						</a>
 					))}
 				</nav>
-				<div class="flex items-center gap-3">
+				<div class="flex items-center gap-1">
 					<a
-						href="https://github.com/C4bbage64"
-						class="hidden items-center gap-2 rounded-full border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-300 hover:text-slate-950 dark:border-slate-800 dark:text-slate-100 dark:hover:border-slate-700 md:inline-flex"
+						href="https://github.com/irfan-deni"
+						class="hidden px-3 py-2 font-mono text-xs text-[var(--muted)] transition hover:text-[var(--accent)] md:inline-flex"
 						target="_blank"
 						rel="noreferrer"
 					>
-						<span>GitHub</span>
+						<span>GitHub ↗</span>
 					</a>
 					<button
 						data-theme-toggle
 						type="button"
-						class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-700"
+						class="inline-flex h-9 w-9 items-center justify-center text-[var(--muted)] transition hover:text-[var(--accent)]"
 						aria-label="Toggle theme"
 					>
 						<svg class="sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -87,6 +83,14 @@ const navLinks = [
 							<path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
 						</svg>
 					</button>
+					<details class="relative md:hidden">
+						<summary class="cursor-pointer list-none px-2 py-2 font-mono text-xs text-[var(--muted)]">Menu</summary>
+						<nav class="absolute right-0 top-10 w-40 border rule bg-[var(--paper)] p-3 shadow-lg">
+							{navLinks.map((link) => (
+								<a href={link.href} class="block px-2 py-2 font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]">{link.label}</a>
+							))}
+						</nav>
+					</details>
 				</div>
 			</div>
 		</header>
@@ -95,12 +99,12 @@ const navLinks = [
 			<slot />
 		</main>
 
-		<footer class="border-t border-slate-200/80 bg-white/70 dark:border-slate-800/80 dark:bg-slate-950/70">
-			<div class="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-8 text-sm text-slate-600 dark:text-slate-300 md:flex-row md:items-center md:justify-between">
-				<span>© {new Date().getFullYear()} C4bbage64. Built with Astro.</span>
-				<div class="flex gap-4">
-					<a class="hover:text-slate-900 dark:hover:text-white" href="https://github.com/C4bbage64" target="_blank" rel="noreferrer">GitHub</a>
-					<a class="hover:text-slate-900 dark:hover:text-white" href="/contact">Contact</a>
+		<footer class="mt-12 border-t rule">
+			<div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 font-mono text-xs text-[var(--muted)] sm:px-6 md:flex-row md:items-center md:justify-between">
+				<span>© {new Date().getFullYear()} irfan-deni / Built with Astro</span>
+				<div class="flex gap-5">
+					<a class="hover:text-[var(--accent)]" href="https://github.com/irfan-deni" target="_blank" rel="noreferrer">GitHub ↗</a>
+					<a class="hover:text-[var(--accent)]" href="/contact">Contact</a>
 				</div>
 			</div>
 		</footer>

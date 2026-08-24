@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+	.slice(0, 3);
+
+const formatDate = (value: Date) =>
+	new Intl.DateTimeFormat(undefined, { month: 'short', year: 'numeric' }).format(value);
+---
+
+<Layout title="Now | Irfan Deni" description="What Irfan Deni is building and learning right now">
+	<section class="mx-auto max-w-6xl px-5 py-14 sm:px-6 lg:py-20">
+		<div class="grid gap-10 border-b-2 border-[var(--ink)] pb-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(17rem,.8fr)]">
+			<div>
+				<p class="eyebrow">Current focus</p>
+				<h1 class="mt-4 text-5xl leading-none sm:text-6xl">What I’m working on now.</h1>
+				<p class="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">This page is a snapshot of the things I am building and learning right now. I will update it as my work changes, while the blog keeps the longer record.</p>
+			</div>
+			<div class="border-l-2 border-[var(--accent)] pl-5 font-mono text-xs leading-6 text-[var(--muted)]">Lasting work deserves context. This is the short version; the notes are where I keep the details.</div>
+		</div>
+
+		<div class="mt-14 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(17rem,.8fr)]">
+			<div>
+				<p class="eyebrow">In progress</p>
+				<div class="mt-5 divide-y border-y rule">
+					<section class="grid gap-3 py-6 sm:grid-cols-[8rem_1fr]"><span class="font-mono text-xs text-[var(--accent)]">01 / Build</span><div><h2 class="text-2xl">Inapgo</h2><p class="mt-2 max-w-xl leading-7 text-[var(--muted)]">Building a SaaS application with Nuxt, Cloudflare, and Supabase, while learning what it takes to ship and maintain a real product.</p></div></section>
+					<section class="grid gap-3 py-6 sm:grid-cols-[8rem_1fr]"><span class="font-mono text-xs text-[var(--accent)]">02 / Learn</span><div><h2 class="text-2xl">Cloud & DevOps</h2><p class="mt-2 max-w-xl leading-7 text-[var(--muted)]">Learning more about cloud infrastructure, deployment workflows, and the systems that keep products reliable.</p></div></section>
+					<section class="grid gap-3 py-6 sm:grid-cols-[8rem_1fr]"><span class="font-mono text-xs text-[var(--accent)]">03 / Share</span><div><h2 class="text-2xl">Build notes</h2><p class="mt-2 max-w-xl leading-7 text-[var(--muted)]">Turning useful lessons, decisions, and setbacks into notes that I can revisit and build on over time.</p></div></section>
+				</div>
+			</div>
+
+			<aside class="border-t-2 border-[var(--ink)] pt-4">
+				<div class="flex items-center justify-between"><p class="eyebrow">Recent notes</p><a class="font-mono text-xs text-[var(--muted)] hover:text-[var(--accent)]" href="/blog">All notes →</a></div>
+				<div class="mt-5 divide-y rule">
+					{posts.map((post) => (
+						<a class="block py-4 first:pt-0 group" href={`/blog/${post.id}/`}><p class="font-mono text-xs text-[var(--accent)]">{formatDate(post.data.date)}</p><h2 class="mt-2 font-display text-xl leading-tight transition group-hover:text-[var(--accent)]">{post.data.title}</h2></a>
+					))}
+				</div>
+			</aside>
+		</div>
+	</section>
+</Layout>

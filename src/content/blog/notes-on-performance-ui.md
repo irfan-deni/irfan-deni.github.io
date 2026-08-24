@@ -2,6 +2,7 @@
 title: "Notes on performance-minded UI"
 description: "Practical tactics for keeping interfaces fast—critical CSS, image discipline, and minimal JS."
 date: "2025-11-28"
+category: "Technology"
 tags:
   - Performance
   - Frontend
